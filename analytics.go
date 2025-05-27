@@ -4,15 +4,24 @@ import (
 	"time"
 )
 
+type GetAnalyticsRequest struct {
+	Metric        string           `json:"metric"`
+	GetAttributes AttributeList    `json:"get_attributes"`
+	StartTime     int64            `json:"start_time"`
+	EndTime       int64            `json:"end_time"`
+	Conditions    SearchConditions `json:"conditions"`
+}
+
 type GetAnalyticsResult map[string]interface{}
 
-func (c *Client) GetAnalytics(metric string, getAttributes AttributeList, startTime, endTime int64) ([]GetAnalyticsResult, error) {
+func (c *Client) GetAnalytics(req GetAnalyticsRequest) ([]GetAnalyticsResult, error) {
 	op := operation{
 		Operation:     OP_GET_ANALYTICS,
-		Metric:        metric,
-		GetAttributes: getAttributes,
-		StartTime:     startTime,
-		EndTime:       endTime,
+		Metric:        req.Metric,
+		GetAttributes: req.GetAttributes,
+		StartTime:     req.StartTime,
+		EndTime:       req.EndTime,
+		Conditions:    req.Conditions,
 	}
 
 	results := make([]GetAnalyticsResult, 0)

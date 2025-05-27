@@ -25,6 +25,8 @@ type SearchCondition struct {
 	Conditions []*SearchCondition `json:"conditions,omitempty"`
 }
 
+type SearchConditions []SearchCondition
+
 type Sort struct {
 	Attribute  string `json:"attribute,omitempty"`
 	Descending bool   `json:"descending,omitempty"`
