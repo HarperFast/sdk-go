@@ -77,8 +77,13 @@ func (c *Client) ListMetrics(types []MetricType) ([]ListMetricsResult, error) {
 	return results, nil
 }
 
+type AttributeDesc struct {
+	Name string `json:"name"`
+	Type string `json:"type"`
+}
+
 type DescribeMetricResult struct {
-	Attributes []string `json:"attributes"`
+	Attributes []AttributeDesc `json:"attributes"`
 }
 
 func (c *Client) DescribeMetric(metric string) (*DescribeMetricResult, error) {
