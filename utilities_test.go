@@ -9,7 +9,7 @@ func TestSystemStatus(t *testing.T) {
 	guest := randomID()
 
 	// try with standard super user
-	_, err := c.SystemInformation()
+	_, err := c.SystemInformationAll()
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -31,7 +31,7 @@ func TestSystemStatus(t *testing.T) {
 	defer c.DropUser(guest)
 
 	guestClient := NewClient(DEFAULT_ENDPOINT, guest, guest)
-	_, err = guestClient.SystemInformation()
+	_, err = guestClient.SystemInformationAll()
 	if e, ok := err.(*OperationError); ok && e.IsNotAuthorizedError() {
 		return
 	}
