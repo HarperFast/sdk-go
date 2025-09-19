@@ -56,7 +56,7 @@ func (c *Client) DescribeAll() (*DescribeAllResponse, error) {
 	return &result, err
 }
 
-func (c *Client) CreateAttribute(schema, table, attribute string) error {
+func (c *Client) CreateAttribute(schema, table string, attribute Attribute) error {
 	return c.opRequest(operation{
 		Operation: OP_CREATE_ATTRIBUTE,
 		Schema:    schema,
@@ -65,7 +65,7 @@ func (c *Client) CreateAttribute(schema, table, attribute string) error {
 	}, nil)
 }
 
-func (c *Client) DropAttribute(schema, table, attribute string) error {
+func (c *Client) DropAttribute(schema, table string, attribute Attribute) error {
 	return c.opRequest(operation{
 		Operation: OP_DROP_ATTRIBUTE,
 		Schema:    schema,

@@ -459,9 +459,9 @@ func TestSearchByConditions(t *testing.T) {
 
 	found := []aRecord{}
 	conditions := SearchCondition{
-		Attribute: "name",
-		Type:      "equals",
-		Value:     record.Name,
+		Attribute:  "name",
+		Comparator: "equals",
+		Value:      record.Name,
 	}
 	err := c.SearchByConditions(database, table, &found, []SearchCondition{conditions}, AllAttributes, SearchByConditionsOptions{})
 	if err != nil {

@@ -138,8 +138,8 @@ Authorization: Basic HDB_ADMIN:password
     "operation": "search_by_value",
     "schema": "test",
     "table": "table1",
-    "search_attribute": "age",
-    "search_value": "4*",
+    "attribute": "age",
+    "value": "4*",
     "get_attributes": ["*"]
 }
 

@@ -62,26 +62,26 @@ func (c *Client) ReadLog(limit, start int, from, until time.Time, order string) 
 // Use LogSearchType* constants to filter the log entries by searchValues,
 // which should be an array/slice of searchType.
 // Leave searchType empty (LogSearchTypeAll) to get all entries.
-func (c *Client) ReadTransactionLog(schema, table, searchType string, searchValues interface{}) ([]TxLogEntry, error) {
+func (c *Client) ReadTransactionLog(schema, table, comparator string, searchValues interface{}) ([]TxLogEntry, error) {
 	var result []TxLogEntry
 	err := c.opRequest(operation{
 		Operation:    OP_READ_TRANSACTION_LOG,
 		Schema:       schema,
 		Table:        table,
-		SearchType:   searchType,
+		Comparator:   comparator,
 		SearchValues: searchValues,
 	}, &result)
 	return result, err
 }
 
 // Leave searchType empty (LogSearchTypeAll) to get all entries.
-func (c *Client) ReadAuditLog(schema, table string, searchType string, searchValues interface{}) ([]AuditLogEntry, error) {
+func (c *Client) ReadAuditLog(schema, table string, comparator string, searchValues interface{}) ([]AuditLogEntry, error) {
 	var result []AuditLogEntry
 	err := c.opRequest(operation{
 		Operation:    OP_READ_AUDIT_LOG,
 		Schema:       schema,
 		Table:        table,
-		SearchType:   searchType,
+		Comparator:   comparator,
 		SearchValues: searchValues,
 	}, &result)
 

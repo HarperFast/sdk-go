@@ -232,11 +232,12 @@ func (o OpRemoveNode) Prepare() interface{} {
 type operation struct {
 	Action          string                       `json:"action,omitempty"`
 	Active          *bool                        `json:"active,omitempty"`
-	Attribute       string                       `json:"attribute,omitempty"`
+	Attribute       Attribute                    `json:"attribute,omitempty"`
 	Attributes      []string                     `json:"attributes,omitempty"`
 	Conditions      []SearchCondition            `json:"conditions,omitempty"`
 	Connections     []ConfigureClusterConnection `json:"connections,omitempty"`
 	Company         string                       `json:"company,omitempty"`
+	Comparator      string                       `json:"comparator,omitempty"`
 	CSVURL          string                       `json:"csv_url,omitempty"`
 	Data            string                       `json:"data,omitempty"`
 	Date            string                       `json:"date,omitempty"`
@@ -279,10 +280,7 @@ type operation struct {
 	Role            string                       `json:"role,omitempty"`
 	S3              *S3Credentials               `json:"s3,omitempty"`
 	Schema          string                       `json:"schema,omitempty"`
-	SearchAttribute Attribute                    `json:"search_attribute,omitempty"`
 	SearchOperation *SearchOperation             `json:"search_operation,omitempty"`
-	SearchType      string                       `json:"search_type,omitempty"`
-	SearchValue     interface{}                  `json:"search_value,omitempty"`
 	SearchValues    interface{}                  `json:"search_values,omitempty"`
 	Service         string                       `json:"service,omitempty"`
 	SkipNodeModules bool                         `json:"skip_node_modules,omitempty"`
@@ -297,6 +295,7 @@ type operation struct {
 	Type            string                       `json:"type,omitempty"`
 	Until           string                       `json:"until,omitempty"`
 	Username        string                       `json:"username,omitempty"`
+	Value           interface{}                  `json:"value,omitempty"`
 }
 
 func (o operation) Prepare() interface{} {

@@ -18,9 +18,9 @@ type SearchByConditionsOptions struct {
 }
 
 type SearchCondition struct {
-	Attribute  string             `json:"search_attribute,omitempty"`
-	Type       string             `json:"search_type,omitempty"`
-	Value      interface{}        `json:"search_value,omitempty"`
+	Attribute  string             `json:"attribute,omitempty"`
+	Comparator string             `json:"comparator,omitempty"`
+	Value      interface{}        `json:"value,omitempty"`
 	Operator   string             `json:"operator,omitempty"`
 	Conditions []*SearchCondition `json:"conditions,omitempty"`
 }
@@ -110,14 +110,14 @@ func (c *Client) SearchById(database, table string, v interface{}, ids interface
 
 // SearchByValue fetches records based on the value of an attribute
 // Wilcards are allowed in `searchValue`
-func (c *Client) SearchByValue(schema, table string, v interface{}, searchAttribute Attribute, searchValue interface{}, getAttributes AttributeList) error {
+func (c *Client) SearchByValue(schema, table string, v interface{}, attribute Attribute, value interface{}, getAttributes AttributeList) error {
 	op := operation{
-		Operation:       OP_SEARCH_BY_VALUE,
-		Schema:          schema,
-		Table:           table,
-		SearchAttribute: searchAttribute,
-		SearchValue:     searchValue,
-		GetAttributes:   getAttributes,
+		Operation:     OP_SEARCH_BY_VALUE,
+		Schema:        schema,
+		Table:         table,
+		Attribute:     attribute,
+		Value:         value,
+		GetAttributes: getAttributes,
 	}
 	return c.opRequest(op, &v)
 }
