@@ -56,15 +56,24 @@ var metricTypeName = map[MetricType]string{
 	MetricTypeBuiltin: "builtin",
 }
 
-func (c *Client) ListMetrics(types []MetricType) ([]ListMetricsResult, error) {
-	typeNames := make([]string, 0, len(types))
-	for _, typ := range types {
+type ListMetricsRequest struct {
+	MetricTypes         []MetricType `json:"metric_types"`
+	CustomMetricsWindow int64        `json:"custom_metrics_window"`
+}
+
+func (c *Client) ListMetrics(req ListMetricsRequest) ([]ListMetricsResult, error) {
+	typeNames := make([]string, 0, len(req.MetricTypes))
+	for _, typ := range req.MetricTypes {
 		typeNames = append(typeNames, metricTypeName[typ])
 	}
 
 	op := operation{
 		Operation:   OP_LIST_METRICS,
 		MetricTypes: typeNames,
+	}
+
+	if req.CustomMetricsWindow != 0 {
+		op.CustomMetricsWindow = req.CustomMetricsWindow
 	}
 
 	results := make([]ListMetricsResult, 0)
