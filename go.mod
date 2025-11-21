@@ -1,4 +1,4 @@
-module github.com/HarperDB/sdk-go
+module github.com/HarperFast/sdk-go
 
 go 1.24.0
 
