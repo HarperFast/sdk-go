@@ -2,6 +2,7 @@ package harper
 
 import (
 	"fmt"
+	"net/http"
 	"net/url"
 
 	"github.com/go-resty/resty/v2"
@@ -12,7 +13,19 @@ type Client struct {
 	HttpClient *resty.Client
 }
 
-func NewClient(endpoint string, username string, password string) *Client {
+func NewClientWithHTTPClient(httpClient *http.Client, endpoint, username, password string) *Client {
+	restyClient := resty.
+		NewWithClient(httpClient).
+		SetDisableWarn(true).
+		SetBasicAuth(username, password)
+	
+	return &Client{
+		endpoint:   endpoint,
+		HttpClient: restyClient,
+	}
+}
+
+func NewClient(endpoint, username, password string) *Client {
 	httpClient := resty.
 		New().
 		SetDisableWarn(true).
