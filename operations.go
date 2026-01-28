@@ -234,6 +234,7 @@ type operation struct {
 	Active              *bool                        `json:"active,omitempty"`
 	Attribute           Attribute                    `json:"attribute,omitempty"`
 	Attributes          []string                     `json:"attributes,omitempty"`
+	CoalesceTime        bool                         `json:"coalesce_time,omitempty"`
 	Conditions          []SearchCondition            `json:"conditions,omitempty"`
 	Connections         []ConfigureClusterConnection `json:"connections,omitempty"`
 	Company             string                       `json:"company,omitempty"`
