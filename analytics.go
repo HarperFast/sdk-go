@@ -9,6 +9,7 @@ type GetAnalyticsRequest struct {
 	GetAttributes AttributeList    `json:"get_attributes"`
 	StartTime     int64            `json:"start_time"`
 	EndTime       int64            `json:"end_time"`
+	CoalesceTime  bool             `json:"coalesce_time"`
 	Conditions    SearchConditions `json:"conditions"`
 }
 
@@ -21,6 +22,7 @@ func (c *Client) GetAnalytics(req GetAnalyticsRequest) ([]GetAnalyticsResult, er
 		GetAttributes: req.GetAttributes,
 		StartTime:     req.StartTime,
 		EndTime:       req.EndTime,
+		CoalesceTime:  req.CoalesceTime,
 		Conditions:    req.Conditions,
 	}
 
